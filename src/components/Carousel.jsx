@@ -115,6 +115,7 @@ export default function Carousel () {
 
     return (
         <>
+        {/* version ordinateur */}
         <div className="image-container">
             <button className="nav-button left" onClick={handlePreviousClick}>
                 <img src={`${left}`} />
@@ -133,6 +134,31 @@ export default function Carousel () {
             <button className="nav-button right" onClick={handleNextClick}>
                 <img src={`${right}`} />
             </button>
+        </div>
+
+        {/* version mobile */}
+
+        <div className="container-mobile">
+            <div className="mobile-img-top">
+            {imagesRandom.map((image, index) => (
+                <img
+                    key={image.id}
+                    src={image.src}
+                    alt={`Napoli ${image.id}`}
+                    className={`image-mobile ${currentImageIndex === index ? 'active' : 'hidden'}`}
+                />
+            ))}
+            </div>
+            <div className="mobile-img-bottom">
+            {imagesRandom.map((image, index) => (
+                <img
+                    key={image.id}
+                    src={image.src}
+                    alt={`Napoli ${image.id}`}
+                    className={`image-mobile2 ${currentImageIndex === index ? 'active' : 'hidden'}`}
+                />
+            ))}
+            </div>
         </div>
         </>
     )

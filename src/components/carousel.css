@@ -1,49 +1,109 @@
-.image-container {
-    width: auto;
-    height: 100vh;
-    overflow: hidden;
-    position: relative;
-}
+@media (min-width: 768px) {
+
+    .image-container {
+        width: auto;
+        height: 100vh;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .container-mobile {
+        display: none;
+    }
 
 /* gérer la logique pour faire apparaitre ou cacher chaque image */
 
-.image-carousel {
-    position: absolute;
-    width: 100vw;
-    height: auto;
-    top: 0;
-    left: 0;
-    transition: opacity 1 ease-in-out;
-    pointer-events: none;
-}
+    .image-carousel {
+        position: absolute;
+        width: 100vw;
+        height: auto;
+        top: 0;
+        left: 0;
+        transition: opacity 1 ease-in-out;
+        pointer-events: none;
+    }
 
-.image-carousel.active {
-    opacity: 1;
-}
+    .image-carousel.active {
+        opacity: 1;
+    }
 
-.image-carousel.hidden {
-    opacity: 0;
-}
+    .image-carousel.hidden {
+        opacity: 0;
+    }
+
 /* les boutons */
 
-.nav-button.left, .nav-button.right {
-    position: absolute;
-    top: 50%;
-    z-index: 1000;
-    background: none;
-    border: none;
-    cursor: pointer;
-    transform: translateY(-50%);
+    .nav-button.left, .nav-button.right {
+        position: absolute;
+        top: 50%;
+        z-index: 1000;
+        background: none;
+        border: none;
+        cursor: pointer;
+        transform: translateY(-50%);
+    }
+
+    .nav-button.left img, .nav-button.right img {
+        width: 4.5em;
+    }
+
+    .nav-button.left {
+        left: 10px;
+    }
+
+    .nav-button.right {
+        right: 10px;
+    }
+
 }
 
-.nav-button.left img, .nav-button.right img {
-    width: 4.5em;
-}
+/* version mobile */
 
-.nav-button.left {
-    left: 10px;
-}
+@media (max-width: 767px) {
 
-.nav-button.right {
-    right: 10px;
+    .image-container {
+        display: none;
+    }
+
+    .container-mobile {
+        width: auto;
+        height: 100vh;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .nav-button.left, .nav-button.right {
+        display: none; 
+    }
+
+    .image-mobile {
+        position: absolute;
+        width: 100vw;
+        height: 50vh;
+        object-fit: cover;
+        top: 0;
+        left: 0;
+        transition: opacity 1 ease-in-out;
+        pointer-events: none;
+    }
+
+    .image-mobile2 {
+        position: absolute;
+        width: 100vw;
+        height: 50vh;
+        object-fit: cover;
+        bottom: 0;
+        left: 0;
+        transition: opacity 1 ease-in-out;
+        pointer-events: none;
+    }
+
+    .image-mobile.active {
+        opacity: 1;
+    }
+
+    .image-mobile.hidden {
+        opacity: 0;
+    }
+
 }
