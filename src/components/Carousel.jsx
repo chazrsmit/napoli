@@ -37,6 +37,9 @@ import photo28 from '../assets/carousel/28.png'
 import photo29 from '../assets/carousel/29.png'
 import photo30 from '../assets/carousel/30.png'
 
+import left from '../assets/elements/left-arrow-01.png'
+import right from '../assets/elements/right-arrow-01.png'
+
 export default function Carousel () {
 
 // source : https://dev.to/vishalthapaliya/build-a-smooth-performant-image-carousel-in-react-a-beginners-guide-48ji
@@ -113,7 +116,9 @@ export default function Carousel () {
     return (
         <>
         <div className="image-container">
-            <button className="nav-button left" onClick={handlePreviousClick}>previous</button>
+            <button className="nav-button left" onClick={handlePreviousClick}>
+                <img src={`${left}`} />
+            </button>
 
             {/* on map sur la variable array d'images pour les faire apparaitre une à une */}
             {imagesRandom.map((image, index) => (
@@ -125,7 +130,9 @@ export default function Carousel () {
                 />
             ))}
 
-            <button className="nav-button right" onClick={handleNextClick}>next</button>
+            <button className="nav-button right" onClick={handleNextClick}>
+                <img src={`${right}`} />
+            </button>
         </div>
         </>
     )
