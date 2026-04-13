@@ -150,48 +150,88 @@ export default function Carousel () {
     // on sépare pour chaque containter (top et bottom)
 
     // top container:
-    const handleTouchMoveTop = (e) => {
-        const touchDown = touchTop;
+    // const handleTouchMoveTop = (e) => {
+    //     const touchDown = touchTop;
 
-        if (touchDown === null) {
-            return
-        }
+    //     if (touchDown === null) {
+    //         return
+    //     }
 
-        const currentTouch = e.touches[0].clientX;
-        const diff = touchDown - currentTouch;
+    //     const currentTouch = e.touches[0].clientX;
+    //     const diff = touchDown - currentTouch;
 
-        if (diff > 50) {
-            handleNextClick();
-        }
+    //     if (diff > 50) {
+    //         handleNextClick();
+    //     }
 
-        if (diff < -50) {
-            handlePreviousClick();
-        }
+    //     if (diff < -50) {
+    //         handlePreviousClick();
+    //     }
+    // }
 
-        // setTouchTop(null);
+    const handleTouchEndTop = (e) => {
+            if (touchTop === null) return;
+
+    const endX = e.changedTouches[0].clientX;
+    const diff = touchTop - endX;
+
+    // swipe gauche → next
+    if (diff > 50) {
+        setCurrentImageIndex(prev =>
+            (prev + 1) % imagesRandom.length
+        );
+    }
+
+    // swipe droite → previous
+    if (diff < -50) {
+        setCurrentImageIndex(prev =>
+            prev === 0 ? imagesRandom.length - 1 : prev - 1
+        );
+    }
+
+    setTouchTop(null);
     }
 
     // bottom container:
-    const handleTouchMoveBottom = (e) => {
-        const touchDown = touchBottom;
+    // const handleTouchMoveBottom = (e) => {
+    //     const touchDown = touchBottom;
 
-        if (touchDown === null) {
-            return
-        }
+    //     if (touchDown === null) {
+    //         return
+    //     }
 
-        const currentTouch = e.touches[0].clientX;
-        const diff = touchDown - currentTouch;
+    //     const currentTouch = e.touches[0].clientX;
+    //     const diff = touchDown - currentTouch;
 
-        if (diff > 50) {
-            handleNextBottom();
-        }
+    //     if (diff > 50) {
+    //         handleNextBottom();
+    //     }
 
-        if (diff < -50) {
-            handlePreviousBottom();
-        }
+    //     if (diff < -50) {
+    //         handlePreviousBottom();
+    //     }
+    // }
 
-        // setTouchBottom(null);
+    const handleTouchEndBottom = (e) => {
+    if (touchBottom === null) return;
+
+    const endX = e.changedTouches[0].clientX;
+    const diff = touchBottom - endX;
+
+    if (diff > 50) {
+        setBottomImageIndex(prev =>
+            (prev + 1) % imagesRandom2.length
+        );
     }
+
+    if (diff < -50) {
+        setBottomImageIndex(prev =>
+            prev === 0 ? imagesRandom2.length - 1 : prev - 1
+        );
+    }
+
+    setTouchBottom(null);
+};
 
     return (
         <>
@@ -219,7 +259,7 @@ export default function Carousel () {
         {/* version mobile */}
 
         <div className="container-mobile">
-            <div className="mobile-img-top" onTouchStart={handleTouchStartTop} onTouchMove={handleTouchMoveTop} onTouchEnd={() => setTouchTop(null)}>
+            <div className="mobile-img-top" onTouchStart={handleTouchStartTop} onTouchEnd={handleTouchEndTop}>
                 {imagesRandom.map((image, index) => (
                     <img
                         key={image.id}
@@ -230,7 +270,7 @@ export default function Carousel () {
                 ))}
 
             </div>
-            {/* <div className="mobile-img-bottom" onTouchStart={handleTouchStartBottom} onTouchMove={handleTouchMoveBottom}  onTouchEnd={() => setTouchBottom(null)}>
+            {/* <div className="mobile-img-bottom" onTouchStart={handleTouchStartBottom} onTouchEnd={handleTouchEndBottom}>
                 {imagesRandom2.map((image, index) => (
                     <img
                         key={image.id}
