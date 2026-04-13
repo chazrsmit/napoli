@@ -1,0 +1,36 @@
+// dans ce component, on va créer la logique du carousel, à faire apparaitre sur la homepage via App.jsx
+
+// d'abord, importer les images du dossier assets et les placer dans une variable
+
+import photo1 from '../assets/carousel/1.png'
+import photo2 from '../assets/carousel/2.png'
+import photo3 from '../assets/carousel/3.png'
+import photo4 from '../assets/carousel/4.png'
+import photo5 from '../assets/carousel/5.png'
+import photo6 from '../assets/carousel/6.png'
+import photo7 from '../assets/carousel/7.png'
+import photo8 from '../assets/carousel/8.png'
+import photo9 from '../assets/carousel/9.png'
+import photo10 from '../assets/carousel/10.png'
+import photo11 from '../assets/carousel/11.png'
+import photo12 from '../assets/carousel/12.png'
+import photo13 from '../assets/carousel/13.png'
+import photo14 from '../assets/carousel/14.png'
+import photo15 from '../assets/carousel/15.png'
+import photo16 from '../assets/carousel/16.png'
+import photo17 from '../assets/carousel/17.png'
+import photo18 from '../assets/carousel/18.png'
+import photo19 from '../assets/carousel/19.png'
+import photo20 from '../assets/carousel/20.png'
+import photo21 from '../assets/carousel/21.png'
+import photo22 from '../assets/carousel/22.png'
+import photo23 from '../assets/carousel/23.png'
+import photo24 from '../assets/carousel/24.png'
+import photo25 from '../assets/carousel/25.png'
+import photo26 from '../assets/carousel/26.png'
+import photo27 from '../assets/carousel/27.png'
+import photo28 from '../assets/carousel/28.png'
+import photo29 from '../assets/carousel/29.png'
+import photo30 from '../assets/carousel/30.png'
+
+// ensuite, créer la logique des images qui sont aléatoires
