@@ -78,7 +78,7 @@ export default function Carousel () {
 // on va créer une fonction, qui va prendre en paramètre un tableau d'images (ici notre tableau 'images'), et qui va mélanger ce tableau de manère aléatoire.
 
     const shuffleArray = (array) => {
-        const arr =[...array];
+        const arr = [...array];
 
         for (let i = arr.length - 1 ; i > 0; i--) {
             const j = Math.floor(Math.random()*(i+1));
@@ -88,8 +88,8 @@ export default function Carousel () {
         return arr;
     }
 
-    const [imagesRandom] = useState(() => shuffleArray(images)); //on éxecute une seule fois la fonction, au moment du render. on utilise une fonction fléchée pour que ça soit plus propre, et on utilise un useState pour stocker le résultat de cette fonction, qui est un tableau d'images mélangé. on utilise une fonction fléchée dans le useState pour que la fonction shuffleArray ne soit éxecutée qu'une seule fois, au moment du render, et pas à chaque fois que le composant se re-render (ce qui serait le cas si on mettait directement shuffleArray(images) dans le useState). en effet, si on mettait directement shuffleArray(images), à chaque fois que le composant se re-renderait, la fonction shuffleArray serait éxecutée à nouveau, ce qui ferait que les images seraient mélangées à chaque re-render, ce qui n'est pas ce qu'on veut.
-    console.log(imagesRandom);
+    const [imagesRandom] = useState(() => shuffleArray(images));
+    // on éxecute une seule fois la fonction, au moment du render. on utilise une fonction fléchée pour que ça soit plus propre, et on utilise un useState pour stocker le résultat de cette fonction, qui est un tableau d'images mélangé. on utilise une fonction fléchée dans le useState pour que la fonction shuffleArray ne soit éxecutée qu'une seule fois, au moment du render, et pas à chaque fois que le composant se re-render (ce qui serait le cas si on mettait directement shuffleArray(images) dans le useState). en effet, si on mettait directement shuffleArray(images), à chaque fois que le composant se re-renderait, la fonction shuffleArray serait éxecutée à nouveau, ce qui ferait que les images seraient mélangées à chaque re-render, ce qui n'est pas ce qu'on veut.
 
 // gérer l'index avec un useState 
 

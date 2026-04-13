@@ -7,16 +7,25 @@
 .image-container img {
     width: 100vw;
     height: auto;
+
 }
 
 /* gérer la logique pour faire apparaitre ou cacher chaque image */
 
+.image-carousel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 0.5 ease-in-out;
+    pointer-events: none;
+}
+
 .image-carousel.active {
-    display: block;
+    opacity: 1;
 }
 
 .image-carousel.hidden {
-    display: none;
+    opacity: 0;
 }
 /* les boutons */
 
