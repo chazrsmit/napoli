@@ -77,10 +77,17 @@
         display: none; 
     }
 
-    .mobile-img-top, .mobile-img-bottom {
+    .mobile-img-top {
         position: relative;
         width: 100%;
-        height: 100%;
+        height: 50%;
+        touch-action: pan-y;
+    }
+
+    .mobile-img-bottom {
+        position: relative;
+        width: 100%;
+        height: 50%;
         touch-action: pan-y;
     }
 
@@ -111,6 +118,14 @@
     }
 
     .image-mobile.hidden {
+        opacity: 0;
+    }
+
+    .image-mobile2.active {
+        opacity: 1;
+    }
+
+    .image-mobile2.hidden {
         opacity: 0;
     }
 
