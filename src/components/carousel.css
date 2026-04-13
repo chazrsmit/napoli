@@ -1,5 +1,7 @@
 .image-container {
     width: auto;
+    height: 100vh;
+    overflow:hidden;
 }
 
 .image-container img {
@@ -15,4 +17,18 @@
 
 .image-carousel.hidden {
     display: none;
+}
+/* les boutons */
+
+.nav-button.left, .nav-button.right {
+    position: absolute;
+    top: 50%;
+}
+
+.nav-button.left {
+    left: 10px;
+}
+
+.nav-button.right {
+    right: 10px;
 }

@@ -85,11 +85,13 @@ export default function Carousel () {
 // on utilise une arrow function pour chaque button : la logique est qu'à chaque clique, l'index va changer
 
     const handlePreviousClick = () => {
+        console.log("previous clicked");
         setCurrentImageIndex(currentImageIndex === 0 ? images.length - 1 : currentImageIndex - 1);
         // on vérifie si on est à l'index 0, donc sur la première image de la liste. si c'est le cas, ça veut dire qu'on va se retrouver au niveau de la dernière image, donc au dernier index, qui est égal à images.length - 1. dans l'autre cas, on va juste à l'index précédent de l'actuel.
     }
 
     const handleNextClick = () => {
+        console.log("next clicked");
         setCurrentImageIndex((currentImageIndex + 1) % images.length);
         // on utilise le modulo %, comme ça si on dépasse la dernière image, on a pas un bug. ce qu'il se passe "mathématiquement", c'est que si on est à la dernière image, donc à l'index images.length - 1, et qu'on clique sur next, on va faire (images.length - 1 + 1) % images.length, ce qui nous ramène à l'index 0, donc à la première image. dans les autres cas, on va juste à l'index suivant de l'actuel (et avec un modulo, il n'y a jamais de réponse à virgule).
     }
@@ -97,9 +99,9 @@ export default function Carousel () {
     return (
         <>
         <div className="image-container">
-            <button className="nav-button left" onClick={ ()=> {handlePreviousClick} }>previous</button>
+            <button className="nav-button left" onClick={handlePreviousClick}>previous</button>
 
-            {/* on map sur la varibale array d'images pour les faire apparaitre une à une */}
+            {/* on map sur la variable array d'images pour les faire apparaitre une à une */}
             {images.map((image, index) => (
                 <img
                     key={image.id}
@@ -109,7 +111,7 @@ export default function Carousel () {
                 />
             ))}
 
-            <button className="nav-button right" onClick={ ()=> {handleNextClick} }>next</button>
+            <button className="nav-button right" onClick={handleNextClick}>next</button>
         </div>
         </>
     )
