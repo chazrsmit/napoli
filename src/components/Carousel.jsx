@@ -230,7 +230,7 @@ export default function Carousel () {
                 ))}
 
             </div>
-            <div className="mobile-img-bottom" onTouchStart={handleTouchStartBottom} onTouchMove={handleTouchMoveBottom}  onTouchEnd={() => setTouchBottom(null)}>
+            {/* <div className="mobile-img-bottom" onTouchStart={handleTouchStartBottom} onTouchMove={handleTouchMoveBottom}  onTouchEnd={() => setTouchBottom(null)}>
                 {imagesRandom2.map((image, index) => (
                     <img
                         key={image.id}
@@ -239,8 +239,8 @@ export default function Carousel () {
                         className={`image-mobile2 ${bottomImageIndex === index ? 'active' : 'hidden'}`}
                     />
                 ))}
-     
-            </div>
+
+            </div> */}
         </div>
         </>
     )
