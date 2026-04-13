@@ -77,19 +77,12 @@
         display: none; 
     }
 
-    /* .mobile-img-top .nav-button.left, .mobile-img-top .nav-button.right {
-        position: absolute;
-        top: 20%;
-        z-index: 1000;
-        background: none;
-        border: none;
-        cursor: pointer;
-        transform: translateY(-50%);
+    .mobile-img-top {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        touch-action: pan-y;
     }
-
-    .mobile-img-top .nav-button.left img, .mobile-img-top .nav-button.right img {
-        width: 3rem;
-    } */
 
     .image-mobile {
         position: absolute;
