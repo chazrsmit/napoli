@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import './App.css'
 import Carousel from './components/Carousel.jsx'
 import TopBar from './components/TopBar.jsx'

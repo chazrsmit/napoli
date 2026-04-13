@@ -93,7 +93,7 @@
 
     .image-mobile {
         position: absolute;
-        width: 100vw;
+        min-width: 100vw;
         height: 50vh;
         object-fit: cover;
         top: 0;
@@ -104,7 +104,7 @@
 
     .image-mobile2 {
         position: absolute;
-        width: 100vw;
+        min-width: 100vw;
         height: 50vh;
         object-fit: cover;
         bottom: 0;

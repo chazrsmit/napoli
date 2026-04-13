@@ -126,18 +126,24 @@ export default function Carousel () {
     }
 
     const handleNextBottom = () => {
-        setBottomImageIndex((bottomImageIndex+1) % imagesRandom2.length);
+        setBottomImageIndex((bottomImageIndex + 1) % imagesRandom2.length);
     }
 
 // on va gérer les event handlers pour la version mobile (inspi : https://dev.to/rakumairu/how-to-handle-swipe-event-on-react-carousel-24ab)
 
-    // mesurer la position initiale du swipe/doigt
+    // mesurer la position initiale du swipe/doigt (container top et bottom)
 
-    const [TouchPosition, setTouchPosition] = useState(null);
+    const [touchTop, setTouchTop] = useState(null);
+    const [touchBottom, setTouchBottom] = useState(null);
 
-    const handleTouchStart = (e) => {
+    const handleTouchStartTop = (e) => {
         const touchDown = e.touches[0].clientX;
-        setTouchPosition(touchDown);
+        setTouchTop(touchDown);
+    }
+
+    const handleTouchStartBottom = (e) => {
+        const touchDown = e.touches[0].clientX;
+        setTouchBottom(touchDown);
     }
 
     // ensuite, on va mesure la position finale du swipe, et calculer la distance parcourue par le doigt. si cette distance est supérieure à un certain seuil (par exemple, 50 pixels), on considère que c'est un swipe valide, et on déclenche l'action correspondante (previous ou next). il faut aussi prendre en compte la direction du swipe (gauche ou droite) pour savoir quelle action déclencher. une valeur négative signifie un swipe vers la droite, et une valeur positive signifie un swipe vers la gauche.
@@ -145,7 +151,7 @@ export default function Carousel () {
 
     // top container:
     const handleTouchMoveTop = (e) => {
-        const touchDown = TouchPosition;
+        const touchDown = touchTop;
 
         if (touchDown === null) {
             return
@@ -162,12 +168,12 @@ export default function Carousel () {
             handlePreviousClick();
         }
 
-        setTouchPosition(null);
+        // setTouchTop(null);
     }
 
     // bottom container:
     const handleTouchMoveBottom = (e) => {
-        const touchDown = TouchPosition;
+        const touchDown = touchBottom;
 
         if (touchDown === null) {
             return
@@ -184,7 +190,7 @@ export default function Carousel () {
             handlePreviousBottom();
         }
 
-        setTouchPosition(null);
+        // setTouchBottom(null);
     }
 
     return (
@@ -213,7 +219,7 @@ export default function Carousel () {
         {/* version mobile */}
 
         <div className="container-mobile">
-            <div className="mobile-img-top" onTouchStart={handleTouchStart} onTouchMove={handleTouchMoveTop}>
+            <div className="mobile-img-top" onTouchStart={handleTouchStartTop} onTouchMove={handleTouchMoveTop} onTouchEnd={() => setTouchTop(null)}>
                 {imagesRandom.map((image, index) => (
                     <img
                         key={image.id}
@@ -224,13 +230,13 @@ export default function Carousel () {
                 ))}
 
             </div>
-            <div className="mobile-img-bottom" onTouchStart={handleTouchStart} onTouchMove={handleTouchMoveBottom}>
+            <div className="mobile-img-bottom" onTouchStart={handleTouchStartBottom} onTouchMove={handleTouchMoveBottom}  onTouchEnd={() => setTouchBottom(null)}>
                 {imagesRandom2.map((image, index) => (
                     <img
                         key={image.id}
                         src={image.src}
                         alt={`Napoli ${image.id}`}
-                        className={`image-mobile2 ${currentImageIndex === index ? 'active' : 'hidden'}`}
+                        className={`image-mobile2 ${bottomImageIndex === index ? 'active' : 'hidden'}`}
                     />
                 ))}
      
