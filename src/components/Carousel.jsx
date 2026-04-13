@@ -270,7 +270,7 @@ export default function Carousel () {
                 ))}
 
             </div>
-            {/* <div className="mobile-img-bottom" onTouchStart={handleTouchStartBottom} onTouchEnd={handleTouchEndBottom}>
+            <div className="mobile-img-bottom" onTouchStart={handleTouchStartBottom} onTouchEnd={handleTouchEndBottom}>
                 {imagesRandom2.map((image, index) => (
                     <img
                         key={image.id}
@@ -280,7 +280,7 @@ export default function Carousel () {
                     />
                 ))}
 
-            </div> */}
+            </div>
         </div>
         </>
     )
