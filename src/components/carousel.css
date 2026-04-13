@@ -68,7 +68,7 @@
 
     .container-mobile {
         width: auto;
-        height: 100vh;
+        height: 100dvh;
         overflow: hidden;
         position: relative;
     }
@@ -93,8 +93,8 @@
 
     .image-mobile {
         position: absolute;
-        min-width: 100vw;
-        height: 50vh;
+        width: 100vw;
+        height: 50dvh;
         object-fit: cover;
         top: 0;
         left: 0;
@@ -104,8 +104,8 @@
 
     .image-mobile2 {
         position: absolute;
-        min-width: 100vw;
-        height: 50vh;
+        width: 100vw;
+        height: 50dvh;
         object-fit: cover;
         bottom: 0;
         left: 0;
