@@ -1,19 +1,16 @@
 .image-container {
     width: auto;
     height: 100vh;
-    overflow:hidden;
-}
-
-.image-container img {
-    width: 100vw;
-    height: auto;
-
+    overflow: hidden;
+    position: relative;
 }
 
 /* gérer la logique pour faire apparaitre ou cacher chaque image */
 
 .image-carousel {
     position: absolute;
+    width: 100vw;
+    height: auto;
     top: 0;
     left: 0;
     transition: opacity 0.5 ease-in-out;
@@ -32,6 +29,7 @@
 .nav-button.left, .nav-button.right {
     position: absolute;
     top: 50%;
+    z-index: 1000;
 }
 
 .nav-button.left {
