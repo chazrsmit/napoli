@@ -75,7 +75,21 @@ export default function Carousel () {
     ];
 
 // randomiser l'ordre des photos à chaque fois que la page est chargée > à chaque reload, on a un ordre d'images différent
-// on va créer une autre variable, qu'on pourra par ex nommer imagesRandom
+// on va créer une fonction, qui va prendre en paramètre un tableau d'images (ici notre tableau 'images'), et qui va mélanger ce tableau de manère aléatoire.
+
+    const shuffleArray = (array) => {
+        const arr =[...array];
+
+        for (let i = arr.length - 1 ; i > 0; i--) {
+            const j = Math.floor(Math.random()*(i+1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        };
+
+        return arr;
+    }
+
+    const [imagesRandom] = useState(() => shuffleArray(images)); //on éxecute une seule fois la fonction, au moment du render. on utilise une fonction fléchée pour que ça soit plus propre, et on utilise un useState pour stocker le résultat de cette fonction, qui est un tableau d'images mélangé. on utilise une fonction fléchée dans le useState pour que la fonction shuffleArray ne soit éxecutée qu'une seule fois, au moment du render, et pas à chaque fois que le composant se re-render (ce qui serait le cas si on mettait directement shuffleArray(images) dans le useState). en effet, si on mettait directement shuffleArray(images), à chaque fois que le composant se re-renderait, la fonction shuffleArray serait éxecutée à nouveau, ce qui ferait que les images seraient mélangées à chaque re-render, ce qui n'est pas ce qu'on veut.
+    console.log(imagesRandom);
 
 // gérer l'index avec un useState 
 
@@ -86,13 +100,13 @@ export default function Carousel () {
 
     const handlePreviousClick = () => {
         console.log("previous clicked");
-        setCurrentImageIndex(currentImageIndex === 0 ? images.length - 1 : currentImageIndex - 1);
+        setCurrentImageIndex(currentImageIndex === 0 ? imagesRandom.length - 1 : currentImageIndex - 1);
         // on vérifie si on est à l'index 0, donc sur la première image de la liste. si c'est le cas, ça veut dire qu'on va se retrouver au niveau de la dernière image, donc au dernier index, qui est égal à images.length - 1. dans l'autre cas, on va juste à l'index précédent de l'actuel.
     }
 
     const handleNextClick = () => {
         console.log("next clicked");
-        setCurrentImageIndex((currentImageIndex + 1) % images.length);
+        setCurrentImageIndex((currentImageIndex + 1) % imagesRandom.length);
         // on utilise le modulo %, comme ça si on dépasse la dernière image, on a pas un bug. ce qu'il se passe "mathématiquement", c'est que si on est à la dernière image, donc à l'index images.length - 1, et qu'on clique sur next, on va faire (images.length - 1 + 1) % images.length, ce qui nous ramène à l'index 0, donc à la première image. dans les autres cas, on va juste à l'index suivant de l'actuel (et avec un modulo, il n'y a jamais de réponse à virgule).
     }
 
@@ -102,7 +116,7 @@ export default function Carousel () {
             <button className="nav-button left" onClick={handlePreviousClick}>previous</button>
 
             {/* on map sur la variable array d'images pour les faire apparaitre une à une */}
-            {images.map((image, index) => (
+            {imagesRandom.map((image, index) => (
                 <img
                     key={image.id}
                     src={image.src}
