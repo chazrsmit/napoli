@@ -1,0 +1,11 @@
+.topbar {
+    position: absolute;
+    left: 50%;
+    margin-left: 0;
+    z-index: 1000;
+    transform: translateX(-50%);
+}
+
+.topbar img {
+    height: 3rem;
+}
