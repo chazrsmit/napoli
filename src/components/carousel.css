@@ -16,7 +16,8 @@
     .image-carousel {
         position: absolute;
         width: 100vw;
-        height: auto;
+        height: 100vh;
+        object-fit: cover;
         top: 0;
         left: 0;
         transition: opacity 1 ease-in-out;
@@ -72,9 +73,23 @@
         position: relative;
     }
 
-    .nav-button.left, .nav-button.right {
+    .image-container .nav-button.left, .image-container .nav-button.right {
         display: none; 
     }
+
+    /* .mobile-img-top .nav-button.left, .mobile-img-top .nav-button.right {
+        position: absolute;
+        top: 20%;
+        z-index: 1000;
+        background: none;
+        border: none;
+        cursor: pointer;
+        transform: translateY(-50%);
+    }
+
+    .mobile-img-top .nav-button.left img, .mobile-img-top .nav-button.right img {
+        width: 3rem;
+    } */
 
     .image-mobile {
         position: absolute;

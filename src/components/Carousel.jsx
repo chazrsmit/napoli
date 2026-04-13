@@ -94,9 +94,15 @@ export default function Carousel () {
     const [imagesRandom] = useState(() => shuffleArray(images));
     // on éxecute une seule fois la fonction, au moment du render. on utilise une fonction fléchée pour que ça soit plus propre, et on utilise un useState pour stocker le résultat de cette fonction, qui est un tableau d'images mélangé. on utilise une fonction fléchée dans le useState pour que la fonction shuffleArray ne soit éxecutée qu'une seule fois, au moment du render, et pas à chaque fois que le composant se re-render (ce qui serait le cas si on mettait directement shuffleArray(images) dans le useState). en effet, si on mettait directement shuffleArray(images), à chaque fois que le composant se re-renderait, la fonction shuffleArray serait éxecutée à nouveau, ce qui ferait que les images seraient mélangées à chaque re-render, ce qui n'est pas ce qu'on veut.
 
-// gérer l'index avec un useState 
+    // on doit le faire une deuxième fois pour le container du bas dans la version mobile:
+    const [imagesRandom2] = useState(() => shuffleArray(images));
+
+// gérer l'index avec un useState (version ord et top container sur mobile)
 
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+    // bottom container sur mobile:
+    const [bottomImageIndex, setBottomImageIndex] = useState(0);
 
 // gérer le previous et next (ordi)
 // on utilise une arrow function pour chaque button : la logique est qu'à chaque clique, l'index va changer
@@ -107,10 +113,78 @@ export default function Carousel () {
         // on vérifie si on est à l'index 0, donc sur la première image de la liste. si c'est le cas, ça veut dire qu'on va se retrouver au niveau de la dernière image, donc au dernier index, qui est égal à images.length - 1. dans l'autre cas, on va juste à l'index précédent de l'actuel.
     }
 
+    // bottom container :
+
+    const handlePreviousBottom = () => {
+        setBottomImageIndex(bottomImageIndex === 0 ? imagesRandom2.length - 1 : bottomImageIndex - 1);
+    }
+
     const handleNextClick = () => {
         console.log("next clicked");
         setCurrentImageIndex((currentImageIndex + 1) % imagesRandom.length);
         // on utilise le modulo %, comme ça si on dépasse la dernière image, on a pas un bug. ce qu'il se passe "mathématiquement", c'est que si on est à la dernière image, donc à l'index images.length - 1, et qu'on clique sur next, on va faire (images.length - 1 + 1) % images.length, ce qui nous ramène à l'index 0, donc à la première image. dans les autres cas, on va juste à l'index suivant de l'actuel (et avec un modulo, il n'y a jamais de réponse à virgule).
+    }
+
+    const handleNextBottom = () => {
+        setBottomImageIndex((bottomImageIndex+1) % imagesRandom2.length);
+    }
+
+// on va gérer les event handlers pour la version mobile (inspi : https://dev.to/rakumairu/how-to-handle-swipe-event-on-react-carousel-24ab)
+
+    // mesurer la position initiale du swipe/doigt
+
+    const [TouchPosition, setTouchPosition] = useState(null);
+
+    const handleTouchStart = (e) => {
+        const touchDown = e.touches[0].clientX;
+        setTouchPosition(touchDown);
+    }
+
+    // ensuite, on va mesure la position finale du swipe, et calculer la distance parcourue par le doigt. si cette distance est supérieure à un certain seuil (par exemple, 50 pixels), on considère que c'est un swipe valide, et on déclenche l'action correspondante (previous ou next). il faut aussi prendre en compte la direction du swipe (gauche ou droite) pour savoir quelle action déclencher. une valeur négative signifie un swipe vers la droite, et une valeur positive signifie un swipe vers la gauche.
+    // on sépare pour chaque containter (top et bottom)
+
+    // top container:
+    const handleTouchMoveTop = (e) => {
+        const touchDown = TouchPosition;
+
+        if (touchDown === null) {
+            return
+        }
+
+        const currentTouch = e.touches[0].clientX;
+        const diff = touchDown - currentTouch;
+
+        if (diff > 50) {
+            handleNextClick();
+        }
+
+        if (diff < -50) {
+            handlePreviousClick();
+        }
+
+        setTouchPosition(null);
+    }
+
+    // bottom container:
+    const handleTouchMoveBottom = (e) => {
+        const touchDown = TouchPosition;
+
+        if (touchDown === null) {
+            return
+        }
+
+        const currentTouch = e.touches[0].clientX;
+        const diff = touchDown - currentTouch;
+
+        if (diff > 50) {
+            handleNextBottom();
+        }
+
+        if (diff < -50) {
+            handlePreviousBottom();
+        }
+
+        setTouchPosition(null);
     }
 
     return (
@@ -139,25 +213,27 @@ export default function Carousel () {
         {/* version mobile */}
 
         <div className="container-mobile">
-            <div className="mobile-img-top">
-            {imagesRandom.map((image, index) => (
-                <img
-                    key={image.id}
-                    src={image.src}
-                    alt={`Napoli ${image.id}`}
-                    className={`image-mobile ${currentImageIndex === index ? 'active' : 'hidden'}`}
-                />
-            ))}
+            <div className="mobile-img-top" onTouchStart={handleTouchStart} onTouchMove={handleTouchMoveTop}>
+                {imagesRandom.map((image, index) => (
+                    <img
+                        key={image.id}
+                        src={image.src}
+                        alt={`Napoli ${image.id}`}
+                        className={`image-mobile ${currentImageIndex === index ? 'active' : 'hidden'}`}
+                    />
+                ))}
+
             </div>
-            <div className="mobile-img-bottom">
-            {imagesRandom.map((image, index) => (
-                <img
-                    key={image.id}
-                    src={image.src}
-                    alt={`Napoli ${image.id}`}
-                    className={`image-mobile2 ${currentImageIndex === index ? 'active' : 'hidden'}`}
-                />
-            ))}
+            <div className="mobile-img-bottom" onTouchStart={handleTouchStart} onTouchMove={handleTouchMoveBottom}>
+                {imagesRandom2.map((image, index) => (
+                    <img
+                        key={image.id}
+                        src={image.src}
+                        alt={`Napoli ${image.id}`}
+                        className={`image-mobile2 ${currentImageIndex === index ? 'active' : 'hidden'}`}
+                    />
+                ))}
+     
             </div>
         </div>
         </>
