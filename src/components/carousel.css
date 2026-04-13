@@ -1,0 +1,18 @@
+.image-container {
+    width: auto;
+}
+
+.image-container img {
+    width: 100vw;
+    height: auto;
+}
+
+/* gérer la logique pour faire apparaitre ou cacher chaque image */
+
+.image-carousel.active {
+    display: block;
+}
+
+.image-carousel.hidden {
+    display: none;
+}
