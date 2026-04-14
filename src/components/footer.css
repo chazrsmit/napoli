@@ -7,13 +7,13 @@
 @media (max-width: 767px) {
     .footer {
         display: flex;
-        justify-content: center;
+        justify-content: left;
         align-items: center;
         padding: 1em;
         background-color: transparent;
     }
 
     .footer img {
-        width: 3rem;
+        width: 11rem;
     }
 }
