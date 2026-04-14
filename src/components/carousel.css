@@ -20,7 +20,7 @@
         object-fit: cover;
         top: 0;
         left: 0;
-        transition: opacity 1 ease-in-out;
+        transition: opacity 0.1 ease-in-out;
         pointer-events: none;
     }
 
@@ -44,8 +44,13 @@
         transform: translateY(-50%);
     }
 
+    .nav-button.left img:hover, .nav-button.right img:hover {
+        transform: scale(1.2);
+    }
+
     .nav-button.left img, .nav-button.right img {
         width: 4.5em;
+        transition: transform 0.1s ease;
     }
 
     .nav-button.left {
