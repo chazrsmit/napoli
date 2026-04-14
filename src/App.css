@@ -17,9 +17,8 @@ html, body {
 
 @media (max-width: 767px) {
     .main {
-        height: 100dvh;
+        height: 120dvh;
         display: flex;
         flex-direction: column;
-        border: 3px solid red;
     }
 }
