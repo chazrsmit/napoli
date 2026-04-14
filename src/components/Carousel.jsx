@@ -264,7 +264,7 @@ export default function Carousel () {
                         src={image.src}
                         alt={`Napoli ${image.id}`}
                         className={`image-mobile ${currentImageIndex === index ? 'active' : 'hidden'}`}
-                        loading="lazy"
+
                     />
                 ))}
 
@@ -276,7 +276,7 @@ export default function Carousel () {
                         src={image.src}
                         alt={`Napoli ${image.id}`}
                         className={`image-mobile2 ${bottomImageIndex === index ? 'active' : 'hidden'}`}
-                        loading="lazy"
+
                     />
                 ))}
             </div>
@@ -288,7 +288,7 @@ export default function Carousel () {
                         src={image.src}
                         alt={`Napoli ${image.id}`}
                         className={`image-mobile3 ${middleImageIndex === index ? 'active' : 'hidden'}`}
-                        loading="lazy"
+
                     />
                 ))}
             </div>
