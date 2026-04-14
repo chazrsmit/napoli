@@ -5,37 +5,58 @@
 
 @media (min-width: 768px) {
     .modal {
-    width: 450px;
-    height: 450px;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-image: url('../assets/elements/modal-01.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    position: relative; }
+        width: 450px;
+        height: 450px;
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-image: url('../assets/elements/modal-01.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        position: relative;
+    }
 
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: transparent;
-    display: flex;
-    align-items: start;
-    justify-content: flex-end;
-    z-index: 999;
-    padding-right: 80px;
-}
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        display: flex;
+        align-items: start;
+        justify-content: flex-end;
+        z-index: 999;
+        padding-right: 80px;
+    }
 
-.modal .texte {
-    text-align: center;
-    z-index: 1001;
-    width: 300px;
-}
+    .modal .texte {
+        text-align: center;
+        z-index: 1001;
+        width: 300px;
+    }
+
+    .closeBtn {
+        background: transparent;
+        border: none;
+    }
+
+    .closeBtn img {
+        width: 80px;
+    }
+
+
+    .close1.hovered {
+        display:none;
+    }
+
+    .close2.notHovered {
+        display:none;
+    }
+
 }
 
 @media (max-width: 768px) {
@@ -62,6 +83,7 @@
         height: 75dvw;
         z-index: 1000;
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
         background-image: url('../assets/elements/modal-bg.png');
@@ -76,4 +98,23 @@
         text-align: center;
         z-index: 1001;
     }
+
+    .closeBtn {
+        background: transparent;
+        border: none;
+    }
+
+    .closeBtn img {
+        width: 80px;
+    }
+
+
+    .close1.hovered {
+        display:none;
+    }
+
+    .close2.notHovered {
+        display:none;
+    }
+
 }
