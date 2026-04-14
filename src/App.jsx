@@ -13,7 +13,7 @@ function App() {
       <TopBar />
       <Carousel />
       <BottomBar />
-      <Footer />
+      {/* <Footer /> */}
     </div>
     </>
   )

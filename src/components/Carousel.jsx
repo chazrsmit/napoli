@@ -167,14 +167,14 @@ export default function Carousel () {
         const diff = touchTop - endX;
 
         // swipe gauche → next
-        if (diff > 50) {
+        if (diff > 60) {
             setCurrentImageIndex(prev =>
                 (prev + 1) % imagesRandom.length
             );
         }
 
         // swipe droite → previous
-        if (diff < -50) {
+        if (diff < -60) {
             setCurrentImageIndex(prev =>
                 prev === 0 ? imagesRandom.length - 1 : prev - 1
             );
@@ -191,13 +191,13 @@ export default function Carousel () {
         const endX = e.changedTouches[0].clientX;
         const diff = touchBottom - endX;
 
-        if (diff > 50) {
+        if (diff > 60) {
             setBottomImageIndex(prev =>
                 (prev + 1) % imagesRandom2.length
             );
         }
 
-        if (diff < -50) {
+        if (diff < -60) {
             setBottomImageIndex(prev =>
                 prev === 0 ? imagesRandom2.length - 1 : prev - 1
             );
@@ -213,13 +213,13 @@ export default function Carousel () {
         const endX = e.changedTouches[0].clientX;
         const diff = touchMiddle - endX;
 
-        if (diff > 50) {
+        if (diff > 60) {
             setMiddleImageIndex(prev =>
                 (prev + 1) % imagesRandom3.length
             );
         }
 
-        if (diff < -50) {
+        if (diff < -60) {
             setMiddleImageIndex(prev =>
                 prev === 0 ? imagesRandom3.length - 1 : prev - 1
             );
