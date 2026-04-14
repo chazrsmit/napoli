@@ -1,5 +1,5 @@
 .modal .texte p {
-    font-size:  clamp(12px, 2vw, 18px);
+    font-size:  clamp(12px, 3vw, 24px);
     font-family: 'Crimson Text';
 }
 
@@ -59,12 +59,12 @@
 
     .modal {
         width: 65dvw;
-        height: 65dvw;
+        height: 75dvw;
         z-index: 1000;
         display: flex;
         align-items: center;
         justify-content: center;
-        background-image: url('../assets/elements/modal-01.png');
+        background-image: url('../assets/elements/modal-bg.png');
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
@@ -72,7 +72,7 @@
 }
 
     .modal .texte {
-        width: 40dvw;
+        width: 45dvw;
         text-align: center;
         z-index: 1001;
     }
