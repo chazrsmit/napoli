@@ -1,7 +1,8 @@
 .topbar {
     position: fixed;
+    top: 0;
     left: 50%;
-    margin-left: 0;
+    margin: 0;
     z-index: 1000;
     transform: translateX(-50%);
 }

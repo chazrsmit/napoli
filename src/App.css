@@ -3,6 +3,8 @@ html, body {
     margin: 0;
     box-sizing: border-box;
     height: 100%;
+    width: 100%;
+    line-height: 1;
 }
 
 #root {
@@ -13,11 +15,12 @@ html, body {
     margin: 0;
     padding: 0;
     height: 100%;
+    width: 100%;
 }
 
 @media (max-width: 767px) {
     .main {
-        height: 100dvh;
+        height: 120dvh;
         display: flex;
         flex-direction: column;
     }
