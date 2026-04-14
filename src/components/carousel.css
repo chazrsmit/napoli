@@ -95,6 +95,14 @@
         overflow: hidden;
     }
 
+    .mobile-img-middle {
+        flex: 1;
+        width: 100%;
+        position: relative;
+        touch-action: pan-y;
+        overflow: hidden;
+    }
+
     .image-mobile {
         position: absolute;
         top: 0;
@@ -132,6 +140,14 @@
     }
 
     .image-mobile2.hidden {
+        opacity: 0;
+    }
+
+    .image-mobile3.active {
+        opacity: 1;
+    }
+
+    .image-mobile3.hidden {
         opacity: 0;
     }
 

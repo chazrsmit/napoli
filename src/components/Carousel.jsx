@@ -98,11 +98,16 @@ export default function Carousel () {
     // on doit le faire une deuxième fois pour le container du bas dans la version mobile:
     const [imagesRandom2] = useState(() => shuffleArray(images));
 
+    // on va ajouter un container au milieu:
+    const [imagesRandom3] = useState(() => shuffleArray(images));
+
 ///// INDEX : gérer l'index avec un useState ////
     // version ordi + top container:
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     // bottom container sur mobile:
     const [bottomImageIndex, setBottomImageIndex] = useState(0);
+    // middle container:
+    const [middleImageIndex, setMiddleImageIndex] = useState(0);
 
 //// PREVIOUS & NEXT ////
 // on utilise une arrow function pour chaque button : la logique est qu'à chaque clique, l'index va changer
@@ -133,6 +138,7 @@ export default function Carousel () {
     // mesurer la position INITIALE du swipe/doigt (container top et bottom)
     const [touchTop, setTouchTop] = useState(null);
     const [touchBottom, setTouchBottom] = useState(null);
+    const [touchMiddle, setTouchMiddle] = useState(null);
 
     // top container
     const handleTouchStartTop = (e) => {
@@ -143,6 +149,11 @@ export default function Carousel () {
     const handleTouchStartBottom = (e) => {
         const touchDown = e.touches[0].clientX;
         setTouchBottom(touchDown);
+    }
+    // middle container
+    const handleTouchStartMiddle = (e) => {
+        const touchDown = e.touches[0].clientX;
+        setTouchMiddle(touchDown);
     }
 
     // ensuite, on va mesurer la position FINALE du swipe, et calculer la distance parcourue par le doigt. si cette distance est supérieure à un certain seuil (par exemple, 50 pixels), on considère que c'est un swipe valide, et on déclenche l'action correspondante (previous ou next). il faut aussi prendre en compte la direction du swipe (gauche ou droite) pour savoir quelle action déclencher. une valeur négative signifie un swipe vers la droite, et une valeur positive signifie un swipe vers la gauche.
@@ -195,6 +206,28 @@ export default function Carousel () {
         setTouchBottom(null);
     };
 
+    // middle container:
+    const handleTouchEndMiddle = (e) => {
+        if (touchMiddle === null) return;
+
+        const endX = e.touches[0].clientX;
+        const diff = touchMiddle - endX;
+
+        if (diff >50) {
+            setMiddleImageIndex(prev =>
+                (prev + 1) % imagesRandom3.length
+            )
+        };
+
+        if (diff < -50) {
+            setMiddleImageIndex( prev =>
+            prev === 0 ? imagesRandom3.length - 1 : prev -1
+            )
+        };
+
+        setTouchMiddle(null);
+    }
+
     /////////////////////////////////////////////////////////
 
 
@@ -246,7 +279,16 @@ export default function Carousel () {
                 ))}
             </div>
                 {/* version avec 3 images stacked on top of each other sur la version mobile */}
-
+            <div className="mobile-img-middle" onTouchStart={handleTouchStartMiddle} onTouchEnd={handleTouchEndMiddle}>
+                {imagesRandom3.map((image, index) => (
+                    <img
+                        key={image.id}
+                        src={image.src}
+                        alt={`Napoli ${image.id}`}
+                        className={`image-mobile3 ${middleImageIndex === index ? 'active' : 'hidden'}`}
+                    />
+                ))}
+            </div>
         </div>
         </>
     )
