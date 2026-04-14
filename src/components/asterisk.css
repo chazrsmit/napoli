@@ -9,7 +9,9 @@
 .asterisk img {
     width: 3rem;
     animation: rotate 3s infinite;
+    cursor: pointer;
 }
+
 
 @keyframes rotate {
     50% {

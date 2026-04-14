@@ -4,7 +4,7 @@
     }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
     .footer {
         display: flex;
         justify-content: space-between;
