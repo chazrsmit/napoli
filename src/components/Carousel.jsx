@@ -279,7 +279,7 @@ export default function Carousel () {
                 ))}
             </div>
                 {/* version avec 3 images stacked on top of each other sur la version mobile */}
-            <div className="mobile-img-middle" onTouchStart={handleTouchStartMiddle} onTouchEnd={handleTouchEndMiddle}>
+            {/* <div className="mobile-img-middle" onTouchStart={handleTouchStartMiddle} onTouchEnd={handleTouchEndMiddle}>
                 {imagesRandom3.map((image, index) => (
                     <img
                         key={image.id}
@@ -288,7 +288,7 @@ export default function Carousel () {
                         className={`image-mobile3 ${middleImageIndex === index ? 'active' : 'hidden'}`}
                     />
                 ))}
-            </div>
+            </div> */}
         </div>
         </>
     )
