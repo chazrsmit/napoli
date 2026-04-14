@@ -8,4 +8,14 @@
 
 .asterisk img {
     width: 3rem;
+    animation: rotate 3s infinite;
+}
+
+@keyframes rotate {
+    50% {
+        transform: rotate(180deg);
+    }
+    75% {
+        transform: rotate(-180deg);
+    }
 }
