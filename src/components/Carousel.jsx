@@ -43,7 +43,7 @@ import right from '../assets/elements/right-arrow-01.png'
 export default function Carousel () {
 
 // source : https://dev.to/vishalthapaliya/build-a-smooth-performant-image-carousel-in-react-a-beginners-guide-48ji
-
+//// IMPORT ////
     const images = [
         { id: 1, src: photo1 },
         { id: 2, src: photo2 },
@@ -77,6 +77,7 @@ export default function Carousel () {
         { id: 30, src: photo30 },
     ];
 
+//// RANDOMISER ////
 // randomiser l'ordre des photos à chaque fois que la page est chargée > à chaque reload, on a un ordre d'images différent
 // on va créer une fonction, qui va prendre en paramètre un tableau d'images (ici notre tableau 'images'), et qui va mélanger ce tableau de manère aléatoire.
 
@@ -97,141 +98,105 @@ export default function Carousel () {
     // on doit le faire une deuxième fois pour le container du bas dans la version mobile:
     const [imagesRandom2] = useState(() => shuffleArray(images));
 
-// gérer l'index avec un useState (version ord et top container sur mobile)
-
+///// INDEX : gérer l'index avec un useState ////
+    // version ordi + top container:
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
     // bottom container sur mobile:
     const [bottomImageIndex, setBottomImageIndex] = useState(0);
 
-// gérer le previous et next (ordi)
+//// PREVIOUS & NEXT ////
 // on utilise une arrow function pour chaque button : la logique est qu'à chaque clique, l'index va changer
-
+    // sur l'ordi et le top container:
     const handlePreviousClick = () => {
         console.log("previous clicked");
         setCurrentImageIndex(currentImageIndex === 0 ? imagesRandom.length - 1 : currentImageIndex - 1);
         // on vérifie si on est à l'index 0, donc sur la première image de la liste. si c'est le cas, ça veut dire qu'on va se retrouver au niveau de la dernière image, donc au dernier index, qui est égal à images.length - 1. dans l'autre cas, on va juste à l'index précédent de l'actuel.
     }
-
-    // bottom container :
-
-    const handlePreviousBottom = () => {
-        setBottomImageIndex(bottomImageIndex === 0 ? imagesRandom2.length - 1 : bottomImageIndex - 1);
-    }
-
     const handleNextClick = () => {
         console.log("next clicked");
         setCurrentImageIndex((currentImageIndex + 1) % imagesRandom.length);
         // on utilise le modulo %, comme ça si on dépasse la dernière image, on a pas un bug. ce qu'il se passe "mathématiquement", c'est que si on est à la dernière image, donc à l'index images.length - 1, et qu'on clique sur next, on va faire (images.length - 1 + 1) % images.length, ce qui nous ramène à l'index 0, donc à la première image. dans les autres cas, on va juste à l'index suivant de l'actuel (et avec un modulo, il n'y a jamais de réponse à virgule).
     }
 
-    const handleNextBottom = () => {
-        setBottomImageIndex((bottomImageIndex + 1) % imagesRandom2.length);
-    }
+    // pour le bottom container, on a la logique du swipe left et right directement dans al fonciton touchEndBottom.
+    //     const handlePreviousBottom = () => {
+    //     setBottomImageIndex(bottomImageIndex === 0 ? imagesRandom2.length - 1 : bottomImageIndex - 1);
+    // }
 
+    // const handleNextBottom = () => {
+    //     setBottomImageIndex((bottomImageIndex + 1) % imagesRandom2.length);
+    // }
+
+//// TOUCH / SWIPES MOBILE ////
 // on va gérer les event handlers pour la version mobile (inspi : https://dev.to/rakumairu/how-to-handle-swipe-event-on-react-carousel-24ab)
 
-    // mesurer la position initiale du swipe/doigt (container top et bottom)
-
+    // mesurer la position INITIALE du swipe/doigt (container top et bottom)
     const [touchTop, setTouchTop] = useState(null);
     const [touchBottom, setTouchBottom] = useState(null);
 
+    // top container
     const handleTouchStartTop = (e) => {
         const touchDown = e.touches[0].clientX;
         setTouchTop(touchDown);
     }
-
+    // bottom container
     const handleTouchStartBottom = (e) => {
         const touchDown = e.touches[0].clientX;
         setTouchBottom(touchDown);
     }
 
-    // ensuite, on va mesure la position finale du swipe, et calculer la distance parcourue par le doigt. si cette distance est supérieure à un certain seuil (par exemple, 50 pixels), on considère que c'est un swipe valide, et on déclenche l'action correspondante (previous ou next). il faut aussi prendre en compte la direction du swipe (gauche ou droite) pour savoir quelle action déclencher. une valeur négative signifie un swipe vers la droite, et une valeur positive signifie un swipe vers la gauche.
+    // ensuite, on va mesurer la position FINALE du swipe, et calculer la distance parcourue par le doigt. si cette distance est supérieure à un certain seuil (par exemple, 50 pixels), on considère que c'est un swipe valide, et on déclenche l'action correspondante (previous ou next). il faut aussi prendre en compte la direction du swipe (gauche ou droite) pour savoir quelle action déclencher. une valeur négative signifie un swipe vers la droite, et une valeur positive signifie un swipe vers la gauche.
     // on sépare pour chaque containter (top et bottom)
 
     // top container:
-    // const handleTouchMoveTop = (e) => {
-    //     const touchDown = touchTop;
-
-    //     if (touchDown === null) {
-    //         return
-    //     }
-
-    //     const currentTouch = e.touches[0].clientX;
-    //     const diff = touchDown - currentTouch;
-
-    //     if (diff > 50) {
-    //         handleNextClick();
-    //     }
-
-    //     if (diff < -50) {
-    //         handlePreviousClick();
-    //     }
-    // }
-
     const handleTouchEndTop = (e) => {
-            if (touchTop === null) return;
+        if (touchTop === null) return;
 
-    const endX = e.changedTouches[0].clientX;
-    const diff = touchTop - endX;
+        const endX = e.changedTouches[0].clientX;
+        const diff = touchTop - endX;
 
-    // swipe gauche → next
-    if (diff > 50) {
-        setCurrentImageIndex(prev =>
-            (prev + 1) % imagesRandom.length
-        );
-    }
+        // swipe gauche → next
+        if (diff > 50) {
+            setCurrentImageIndex(prev =>
+                (prev + 1) % imagesRandom.length
+            );
+        }
 
-    // swipe droite → previous
-    if (diff < -50) {
-        setCurrentImageIndex(prev =>
-            prev === 0 ? imagesRandom.length - 1 : prev - 1
-        );
-    }
+        // swipe droite → previous
+        if (diff < -50) {
+            setCurrentImageIndex(prev =>
+                prev === 0 ? imagesRandom.length - 1 : prev - 1
+            );
+        }
 
-    setTouchTop(null);
+        setTouchTop(null);
+        //  on reset 
     }
 
     // bottom container:
-    // const handleTouchMoveBottom = (e) => {
-    //     const touchDown = touchBottom;
-
-    //     if (touchDown === null) {
-    //         return
-    //     }
-
-    //     const currentTouch = e.touches[0].clientX;
-    //     const diff = touchDown - currentTouch;
-
-    //     if (diff > 50) {
-    //         handleNextBottom();
-    //     }
-
-    //     if (diff < -50) {
-    //         handlePreviousBottom();
-    //     }
-    // }
-
     const handleTouchEndBottom = (e) => {
-    if (touchBottom === null) return;
+        if (touchBottom === null) return;
 
-    const endX = e.changedTouches[0].clientX;
-    const diff = touchBottom - endX;
+        const endX = e.changedTouches[0].clientX;
+        const diff = touchBottom - endX;
 
-    if (diff > 50) {
-        setBottomImageIndex(prev =>
-            (prev + 1) % imagesRandom2.length
-        );
-    }
+        if (diff > 50) {
+            setBottomImageIndex(prev =>
+                (prev + 1) % imagesRandom2.length
+            );
+        }
 
-    if (diff < -50) {
-        setBottomImageIndex(prev =>
-            prev === 0 ? imagesRandom2.length - 1 : prev - 1
-        );
-    }
+        if (diff < -50) {
+            setBottomImageIndex(prev =>
+                prev === 0 ? imagesRandom2.length - 1 : prev - 1
+            );
+        }
 
-    setTouchBottom(null);
-};
+        setTouchBottom(null);
+    };
+
+    /////////////////////////////////////////////////////////
+
 
     return (
         <>
@@ -279,8 +244,9 @@ export default function Carousel () {
                         className={`image-mobile2 ${bottomImageIndex === index ? 'active' : 'hidden'}`}
                     />
                 ))}
-
             </div>
+                {/* version avec 3 images stacked on top of each other sur la version mobile */}
+
         </div>
         </>
     )
