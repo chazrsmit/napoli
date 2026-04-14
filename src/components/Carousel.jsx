@@ -210,20 +210,20 @@ export default function Carousel () {
     const handleTouchEndMiddle = (e) => {
         if (touchMiddle === null) return;
 
-        const endX = e.touches[0].clientX;
+        const endX = e.changedTouches[0].clientX;
         const diff = touchMiddle - endX;
 
-        if (diff >50) {
+        if (diff > 50) {
             setMiddleImageIndex(prev =>
                 (prev + 1) % imagesRandom3.length
-            )
-        };
+            );
+        }
 
         if (diff < -50) {
-            setMiddleImageIndex( prev =>
-            prev === 0 ? imagesRandom3.length - 1 : prev -1
-            )
-        };
+            setMiddleImageIndex(prev =>
+                prev === 0 ? imagesRandom3.length - 1 : prev -1
+            );
+        }
 
         setTouchMiddle(null);
     }
