@@ -1,5 +1,5 @@
 import './asterisk.css';
-import image from '../assets/elements/asterisk-01.png';
+import image from '../assets/elements/asterisk.webp';
 
 export default function Asterisk({clickedAsterisk}) {
 

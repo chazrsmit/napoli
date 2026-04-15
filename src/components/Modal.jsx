@@ -1,7 +1,7 @@
 import './modal.css'
 import { useState } from 'react'
-import close from '../assets/elements/close.png'
-import close2 from '../assets/elements/close-contour.png'
+import close from '../assets/elements/close.webp'
+import close2 from '../assets/elements/close-contour.webp'
 
 export default function Modal({ children, onClose, isModalOpen }) {
 
