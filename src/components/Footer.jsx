@@ -8,8 +8,8 @@ export default function Footer() {
 
         <>
         <div className="footer">
-            <img src={`${image}`} />
-            <img src={`${image}`} />  
+            {/* <img src={`${image}`} />
+            <img src={`${image}`} />   */}
         </div>          
         </> 
     )
