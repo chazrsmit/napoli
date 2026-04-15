@@ -13,6 +13,11 @@
         background-color: transparent;
         height: 10px;
         background: #de4a9a;
+        position: fixed;
+        margin: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
     }
 
     .footer img {

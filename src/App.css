@@ -23,7 +23,7 @@ html, body {
 
 @media (max-width: 768px) {
     .main {
-        height: 115dvh;
+        height: 105dvh;
         display: flex;
         flex-direction: column;
     }
