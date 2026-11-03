@@ -1,16 +1,25 @@
-# React + Vite
+# Napoli
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An editorial-style photo journal inspired by a trip to Naples. Napoli pairs a bold pink identity and expressive typography with a playful, image-first browsing experience—designed to feel like revisiting a camera roll with friends.
 
-Currently, two official plugins are available:
+**[View the live site](https://chazrsmit.github.io/napoli/)** · [Browse the source](https://github.com/chazrsmit/napoli)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## The experience
 
-## React Compiler
+- Explore a collection of 30 travel photographs, shuffled on each page load.
+- Browse on desktop with custom previous and next controls.
+- Swipe through three independent photo panels on mobile.
+- Open the asterisk note for a short piece of contextual copy.
+- See a responsive layout that adapts the gallery to different screen sizes.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Design and implementation
 
-## Expanding the ESLint configuration
+The visual direction is intentionally simple: full-bleed photography, a vivid pink background, custom graphic elements, and Crimson Text typography. The gallery changes form across screen sizes, using a single navigable image on desktop and a layered, multi-panel composition on mobile.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+The interface is built from focused React components, with gallery state and touch interactions managed in React and the visual styling kept in CSS.
+
+## Built with
+
+- React 19
+- JavaScript and CSS
+- Bootstrap
